@@ -36,4 +36,4 @@ for pwd in passwords:
         print(bcolors.OKGREEN + "[+] Boom! Password Found :- ",pwd)
         break
     except:
-        print(bcolors.FAIL + "[-] Password",pwd," not matched!")
+        print(bcolors.WARNING + "[-] Password",pwd," not matched!")
